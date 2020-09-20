@@ -2,7 +2,7 @@
 
 Application written for interview.
 
-##Used technologies:
+## Used technologies:
 #### Database
 1. H2 Database
 2. Flyway as a db migration tool
