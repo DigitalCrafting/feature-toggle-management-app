@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">
+      Feature toggles management
+    </h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Expires On</th>
+        <th scope="col">Inverted</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let toggle of togglesList; trackBy: trackByMethod">
+        <td>{{ toggle.displayName }}</td>
+        <td>{{ toggle.description }}</td>
+        <td>{{ toggle.expiresOn | date:'yyyy-MM-dd' }}</td>
+        <td>{{ toggle.inverted }}</td>
+        <td>
+          <button data-toggle="tooltip" title="Archive" type="button" class="btn btn-default btn-sm"
+                  (click)="onArchiveClicked(toggle)">
+            <span class="fa fa-archive"></span>
+          </button>
+        </td>
+        <td>
+          <button data-toggle="tooltip" title="Details" type="button" class="btn btn-default btn-sm"
+                  (click)="openPopup(toggle)">
+            <span class="fa fa-chevron-right"></span>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <button type="button" class="btn btn-dark float-right" (click)="openPopup()">
+    <span class="fa fa-plus"></span>
+    Add toggle
+  </button>
+</div>
+

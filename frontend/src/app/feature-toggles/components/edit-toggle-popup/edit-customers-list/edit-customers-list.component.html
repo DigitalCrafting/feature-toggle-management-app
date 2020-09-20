@@ -1,0 +1,40 @@
+<div class="card pt-1">
+  <div class="card-header">
+    <h6 class="card-title">
+      Customers
+    </h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <ul class="list-group">
+          <li *ngFor="let formControl of customersList['controls']; let i = index; trackBy: trackByMethod" class="list-group-item">
+            <span>{{ formControl.value }}</span>
+            <button data-toggle="tooltip" title="Remove" type="button" class="float-right btn btn-default btn-sm" (click)="onDeleteCustomerClicked(i)">
+              <span class="fa fa-remove"></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="col-12">
+        <div [formGroup]="addCustomerFormGroup" class="form-group">
+          <label for="customerId">Customer id</label>
+          <input
+            [class.is-invalid]="addCustomerFormGroup.get('customerId')?.invalid"
+            formControlName="customerId"
+            type="text"
+            autocomplete="off"
+            class="form-control"
+            placeholder="Enter customerId"
+            id="customerId"
+          >
+        </div>
+      </div>
+      <div class="col-6">
+        <button [disabled]="addCustomerFormGroup.invalid" type="button" class="btn btn-outline-dark" (click)="onAddCustomerClicked()">
+          Add customer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

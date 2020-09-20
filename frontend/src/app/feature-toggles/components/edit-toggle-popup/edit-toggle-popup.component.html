@@ -1,0 +1,94 @@
+<div class="modal-dialog" *ngIf="formGroup">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 *ngIf="toggleModel" class="modal-title">Toggle details: {{ toggleModel?.displayName }}</h4>
+      <h4 *ngIf="!toggleModel" class="modal-title">Create toggle</h4>
+      <button type="button" class="btn btn-sm" aria-label="Close" (click)="_activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row" [formGroup]="formGroup">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="technicalName">Technical name</label>
+              <input
+                [class.is-invalid]="formGroup.get('technicalName')?.invalid"
+                formControlName="technicalName"
+                type="text"
+                class="form-control"
+                autocomplete="off"
+                placeholder="Enter technicalName"
+                id="technicalName"
+              >
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="displayName">Display name</label>
+              <input
+                [class.is-invalid]="formGroup.get('displayName')?.invalid"
+                formControlName="displayName"
+                type="text"
+                autocomplete="off"
+                class="form-control"
+                placeholder="Enter displayName"
+                id="displayName"
+              >
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input
+                [class.is-invalid]="formGroup.get('description')?.invalid"
+                formControlName="description"
+                type="text"
+                autocomplete="off"
+                class="form-control"
+                placeholder="Enter description"
+                id="description"
+              >
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="expiresOn">Expires on</label>
+              <div class="input-group">
+                <input id="expiresOn" class="form-control" placeholder="yyyy-mm-dd"
+                       [class.is-invalid]="formGroup.get('expiresOn')?.invalid"
+                       autocomplete="off"
+                       name="dp" formControlName="expiresOn" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                    <span class="fa fa-calendar"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary" ngbButtonLabel>
+                <input type="checkbox" formControlName="inverted" ngbButton>
+                {{ formGroup.get('inverted').value ? 'Inverted' : 'Not inverted' }}
+              </label>
+            </div>
+          </div>
+        </div>
+        <app-edit-customers-list
+          [customersList]="this.formGroup.get('customerIds')"
+        ></app-edit-customers-list>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button [disabled]="formGroup.invalid" type="button" class="btn btn-outline-dark float-left" (click)="onArchiveToggleClicked()">
+        Archive
+      </button>
+      <button [disabled]="formGroup.invalid" type="button" class="btn btn-dark" (click)="onSaveToggleClicked()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
