@@ -1,6 +1,12 @@
 # Feature toggle management app
 
-Application written for interview.
+Application written for an interview. It took about ~10h to write and therefore it isn't a complete solution.
+
+Some missing features:
+1. Production build that produces one jar which also serves js app
+2. Adding customer only from predefined set
+3. Security
+4. Other blows and whistles
 
 ## Used technologies:
 #### Database
